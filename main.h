@@ -20,4 +20,27 @@
 #define S_LONG 2
 #define S_SHORT 1
 
+/**
+ *struct fmt - The struct object
+ *@fmt:Format string composed of zero or more directives as a character string
+ *@fn: The function correlating with the string output format
+ */
+
+struct fmt
+{
+	char fmt;
+	int (*fn)(va_list, char[], int, int, int, int);
+};
+
+/**
+ *typedef struct fmt fmt_t -The struct typedef object
+ *@fmt:Format string composed of zero or more directives as a character string
+ *@fm_t: The function correlating with the string output format
+ */
+
+typedef struct fmt fmt_t;
+
+int _printf(const char *, ...);
+int handle_print(const char *, int *,
+va_list, char my_buff[], int, int, int, int);
 
