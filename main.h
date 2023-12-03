@@ -44,3 +44,8 @@ int _printf(const char *, ...);
 int handle_print(const char *, int *,
 va_list, char my_buff[], int, int, int, int);
 
+
+/***CHARS & STRINGS***/
+int display_chr(va_list, char my_buff[], int, int, int, int);
+int display_percent(va_list, char my_buff[], int, int, int, int);
+int display_string(va_list, char my_buff[], int, int, int, int);
