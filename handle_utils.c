@@ -24,3 +24,14 @@ int print_check(char chr)
 		return (0);
 	return (1);
 }
+/**
+ *check_if_digit - A function that checks if a parameter is a digit
+ *@chr: The char parameter to be verified
+ *Return: o if c is not a digit, else 1 on success
+ */
+int check_if_digit(char chr)
+{
+	if (chr <= '9' && chr >= '0')
+		return (1);
+	return (0);
+}
