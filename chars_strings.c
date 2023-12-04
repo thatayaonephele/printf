@@ -41,7 +41,7 @@ int display_percent(va_list my_t, char my_buff[],
 /**
  *display_string - A function that prints strings
  *@my_buff: The buffer of array type responsible for printing
- *@my_f: The parameter handling the active flags
+ *@my_f: The parameter handling the active flags 
  *@my_p: The specification parameter handling the precision
  *@my_s: The specifier parameter handling the size
  *@my_t: The list of arguments to be printed
@@ -109,3 +109,8 @@ void handle_buff(char my_buff[], int *buff_pos)
 		write(1, &my_buff[0], *buff_pos);
 	*buff_pos = 0;
 }
+/**
+ * h
+ *
+ *
+ */
