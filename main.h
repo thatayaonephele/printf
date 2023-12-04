@@ -49,7 +49,17 @@ va_list, char my_buff[], int, int, int, int);
 int display_chr(va_list, char my_buff[], int, int, int, int);
 int display_percent(va_list, char my_buff[], int, int, int, int);
 int display_string(va_list, char my_buff[], int, int, int, int);
+void handle_buff(char my_buff[], int *);
 
 
+/***WRITE_CHR_HANDLER***/
 int write_chr_handler(char, char my_buff[], int, int, int, int);
+int write_number(int, char my_buff[], int, int, int, int, char, char);
+int write_num(int, int, char my_buff[], int, int, int, int);
+
+
+
+/***INT_BINARY***/
+int display_int(va_list, char my_buff[], int, int, int, int);
+
 #endif
