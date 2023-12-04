@@ -97,3 +97,15 @@ int display_string(va_list my_t, char my_buff[], int my_f,
 	}
 	return (write(1, s, my_l));
 }
+/**
+ * handle_buff -A fucntion that displays the buffer content if available
+ * @my_buff: The parameter housing the array of char characters
+ * @buff_pos: The parameter for handling the index position of the buffer
+ * Return:Nothing (void funciton)
+ */
+void handle_buff(char my_buff[], int *buff_pos)
+{
+	if ((*buff_pos * (-1) < 0))
+		write(1, &my_buff[0], *buff_pos);
+	*buff_pos = 0;
+}
