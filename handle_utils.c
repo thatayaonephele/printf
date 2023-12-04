@@ -1,3 +1,4 @@
+#include "main.h"
 /**
  * cast_num_size - Casts a number to a specified size
  * @my_num: The parameter to be converted to specified casted size
@@ -11,4 +12,15 @@ long cast_num_size(long my_num, int my_s)
 	else if (my_s == S_SHORT)
 		return ((short)my_num);
 	return ((int)my_num);
+}
+/**
+ * *print_check -Function that verfies eligibilty of a parameter's print status
+ *@chr: The char parameter to be verified
+ *Return: 1 on Success, else 0 on failuire
+ */
+int print_check(char chr)
+{
+	if (!(chr < 127  && chr >= 32))
+		return (0);
+	return (1);
 }
