@@ -49,8 +49,8 @@ int write_chr_handler(char chr, char my_buff[], int my_f,
  *@del: The paramater controlling the padding of the array of chars
  *@added_chr: The parameter of the additional char
  *@my_w: The parameter handling the width
- *@my_f: The parameter handling the active flags
- *@my_l: The length number parameter
+ *@my_f: The parameter handling the active flags *@my_l: The length
+ number parameter
  *@pos: The index parameter of the the buffer
  *@my_p: The specification parameter handling the precision
  *@my_buff: The buffer of array type responsible for printing
