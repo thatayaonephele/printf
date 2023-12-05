@@ -29,7 +29,6 @@ int handle_flags(const char *format, int *x)
 	*x = z - 1;
 	return (my_f);
 }
-
 /**
  * handle_print - A function that displays args based on their respective types
  * @fmt: A format string parameter to handle the list of arguments
@@ -42,31 +41,16 @@ int handle_flags(const char *format, int *x)
  * @my_s: The size specification parameter
  * Return: 1 on sucess, else -1 on failuire
 */
-
 int handle_print(const char *fmt, int *pos, va_list my_l, char my_buff[],
 		int my_f, int my_w, int my_p, int my_s)
 {
-	int x, y = 0;
-	int chr_out = -1;
-	fmt_t fmt_types[] = {
-		{'c', display_chr},
-		{'s', display_string},
-		{'%', display_percent},
-		{'i', display_int},
-		{'d', display_int},
-		{'b', disp_binary},
-                {'u', display_unsgnd},
-		{'o', octal_disp},
-		{'x', disp_hexadecimal},
-                {'X', uppcase_hex},
-		{'p', display_ptr},
-		{'S', display_non_print},
-                {'r', reverse_print},
-		{'R', rot13str},
-		{'\0', NULL}
-	};
-
-	x = 0;
+	int x = 0, y = 0, chr_out = -1;
+	fmt_t fmt_types[] = {{'c', display_chr}, {'s', display_string},
+		{'%', display_percent}, {'i', display_int}, {'d', display_int},
+		{'b', disp_binary}, {'u', display_unsgnd}, {'o', octal_disp},
+		{'x', disp_hexadecimal}, {'X', uppcase_hex}, {'p', display_ptr},
+		{'S', display_non_print}, {'r', reverse_print}, {'R', rot13str},
+		{'\0', NULL}};
 	while (fmt_types[x].fmt != '\0')
 	{
 		if (fmt[*pos] == fmt_types[x].fmt)
@@ -75,7 +59,6 @@ int handle_print(const char *fmt, int *pos, va_list my_l, char my_buff[],
 	}
 	if (fmt_types[x].fmt == '\0')
 	{
-
 		if (fmt[*pos] == '\0')
 			return (-1);
 		y = y + write(1, "%%", 1);
@@ -166,7 +149,7 @@ int handle_precision(const char *format, int *x, va_list my_l)
 	if (format[z] != '.')
 		return (my_p);
 	my_p = 0;
-	z += 1;
+	z = z + 1;
 	while (format[z] != '\0')
 	{
 		if (format[z] == '*')
@@ -177,7 +160,7 @@ int handle_precision(const char *format, int *x, va_list my_l)
 		else if (check_if_digit(format[z]))
 		{
 			my_p *= 10;
-			my_p += format[z] - '0';
+			my_p = my_p + format[z] - '0';
 			break;
 		}
 		else
