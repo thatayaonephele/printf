@@ -64,11 +64,15 @@ int write_chr_handler(char, char my_buff[], int, int, int, int);
 int write_number(int, char my_buff[], int, int, int, int, char, char);
 int write_num(int, int, char my_buff[], int, int, int, int);
 int handle_ptr(char my_buff[], int, int, int, int, char, char, int);
+int rot13str(va_list, char my_buff[], int, int, int, int);
 
 
 
 /***INT_BINARY***/
 int display_int(va_list, char my_buff[], int, int, int, int);
+int display_unsgnd(va_list, char my_buff[], int, int, int, int);
+int handle_unsgnd(int, int, char my_buff[], int, int, int, int);
+int octal_disp(va_list, char my_buff[], int, int, int, int);
 
 
 /***HANDLE_UTILS***/
