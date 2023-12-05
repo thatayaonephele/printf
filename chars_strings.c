@@ -109,3 +109,53 @@ void handle_buff(char my_buff[], int *buff_pos)
 		write(1, &my_buff[0], *buff_pos);
 	*buff_pos = 0;
 }
+/**
+ *disp_binary - A function that prints an unsigned binary number
+ *@my_t:The parameter handling the list of args
+ *@my_buff:The parameter that handles the array of chars
+ *@my_f: The parameter handling the active flags
+ *@my_w:The parameter handling the width
+ *@my_p: The specification parameter handling the precision
+ *@my_s:The size type specification parameter to be casted
+ *Return: The numbers of unsigned chars printed to the stdout
+ */
+int disp_binary(va_list my_t, char my_buff[],
+		int my_f, int my_w, int my_p, int my_s)
+{
+	unsigned int lin, mui, x, total;
+	int pos;
+	unsigned int a[32];
+
+	UNUSED(my_buff);
+	UNUSED(my_f);
+	UNUSED(my_w);
+	UNUSED(my_p);
+	UNUSED(my_s);
+	lin = va_arg(my_t, unsigned int);
+	mui = 2147483648; /* (2 ^ 31) */
+	a[0] = lin / mui;
+	x = 1;
+
+	while (x < 32)
+	{
+		mui = mui / 2;
+		a[x] = (lin / mui) % 2;
+		x++;
+	}
+	x = 0;
+	total = 0;
+	pos = 0;
+	while (x < 32)
+	{
+		total = total + a[x];
+		if (total || (x <= 32 && x >= 29))
+		{
+			char k = '0' + a[x];
+
+			write(1, &k, 1);
+			pos++;
+		}
+		x++;
+	}
+	return (pos);
+}
