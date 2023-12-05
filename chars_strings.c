@@ -9,7 +9,7 @@
  *@my_w: The parameter handling the width
  *Return:The counted amount of chars displayed
  */
-int display_char(va_list my_t, char my_buff[], int my_f,
+int display_chr(va_list my_t, char my_buff[], int my_f,
 		int my_w, int my_p, int my_s)
 {
 	char chr = va_arg(my_t, int);

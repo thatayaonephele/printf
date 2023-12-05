@@ -43,10 +43,11 @@ int handle_flags(const char *format, int *x)
  * Return: 1 on sucess, else -1 on failuire
 */
 
-int handle_print(const char *fmt, int *pos, va_list my_l, char my_buff,
+int handle_print(const char *fmt, int *pos, va_list my_l, char my_buff[],
 		int my_f, int my_w, int my_p, int my_s)
 {
-	int x, y, chr_out = -1;
+	int x, y = 0;
+	int chr_out = -1;
 	fmt_t fmt_types[] = {
 		{'c', display_chr},
 		{'s', display_string},
@@ -81,7 +82,7 @@ int handle_print(const char *fmt, int *pos, va_list my_l, char my_buff,
 		if (my_w)
 		{
 			--(*pos);
-			while (fmt[*pos] != ' ' && fmt[*pos] != '%')
+			while (fmt[*pos] != '%' && fmt[*pos] != ' ')
 			{
 				--(*pos);
 				if (fmt[*pos] == ' ')
@@ -90,7 +91,7 @@ int handle_print(const char *fmt, int *pos, va_list my_l, char my_buff,
 			}
 		}
 		else if (fmt[*pos - 1] == ' ')
-			y = y + write(1, "", 1);
+			y = y + write(1, " ", 1);
 		y = y + write(1, &fmt[*pos], 1);
 		return (y);
 	}
