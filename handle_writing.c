@@ -65,7 +65,7 @@ int write_number(int pos, char my_buff[], int my_f, int my_w, int my_p,
 	if (pos == BUFF_SIZE - 2 && my_buff[pos] == '0' && my_w == 0 && my_p == 0)
 		return (0);
 	if (pos == BUFF_SIZE - 2 && my_buff[pos] == '0' && my_p == 0)
-		my_buff[pos], del = del, " ";
+		my_buff[pos] = del = ' ';
 
 	if (my_p < my_l && my_p > 0)
 		del = ' ';
@@ -116,12 +116,13 @@ int write_number(int pos, char my_buff[], int my_f, int my_w, int my_p,
  *@smaller_than_zero: List of arguments parameter
  *Return: The number of chars printed to stdout on success,else 0 on failuire
  */
-int write_num(int smaller_than_zero, int pos, char my_buff[], int my_f, int my_w, int my_p, int my_s)
+int write_num(int smaller_than_zero, int pos, char my_buff[],
+		int my_f, int my_w, int my_p, int my_s)
 {
 	char added_chr = 0, del = ' ';
 	int my_len = BUFF_SIZE - pos - 1;
 
-	UNUSED(size);
+	UNUSED(my_s);
 
 	if (!(my_f & F_MINUS) && (my_f & F_ZERO))
 		del = '0';
