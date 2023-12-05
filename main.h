@@ -67,7 +67,9 @@ int display_int(va_list, char my_buff[], int, int, int, int);
 long cast_num_size(long, int);
 int print_check(char);
 int check_if_digit(char);
-long num_size_unsgnd(unsigned long n, int my_s);
+long num_size_unsgnd(unsigned long, int);
+int handle_hex_code(char, char my_buff[], int);
+
 
 /***FUNCTIONS***/
 int handle_flags(const char *, int *);
