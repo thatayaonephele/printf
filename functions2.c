@@ -68,4 +68,3 @@ int uppcase_hex(va_list my_t, char my_buff[],
 	return (hexa_display(my_t, "0123456789ABCDEF", my_buff,
 	my_f, 'X', my_w, my_p, my_s));
 }
-

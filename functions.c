@@ -68,14 +68,20 @@ int handle_print(const char *fmt, int *pos, va_list my_l, char my_buff,
 	x = 0;
 	while (fmt_types[x].fmt != '\0')
 	{
+		if (fmt[*pos] == fmt_types[x].fmt)
+			return (fmt_types[x].fn(my_l, my_buff, my_f, my_w, my_p, my_s));
+		x++;
+	}
+	if (fmt_types[x].fmt == '\0')
+	{
+
 		if (fmt[*pos] == '\0')
 			return (-1);
-
 		y = y + write(1, "%%", 1);
 		if (my_w)
 		{
 			--(*pos);
-			while (fmt[*pos] != ' ' && fmt[*pos])
+			while (fmt[*pos] != ' ' && fmt[*pos] != '%')
 			{
 				--(*pos);
 				if (fmt[*pos] == ' ')

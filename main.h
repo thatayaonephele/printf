@@ -95,7 +95,6 @@ int disp_hexadecimal(va_list, char my_buff[], int, int, int, int);
 int uppcase_hex(va_list, char my_buff[], int, int, int, int);
 int hexa_display(va_list, char lambda_func[], char my_buff[],
 		int, char chr_f, int, int, int);
-int handle_unsgnd(int, int, char buffer[], int, int, int, int);
 
 
 #endif

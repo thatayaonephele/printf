@@ -110,10 +110,10 @@ int display_non_print(va_list my_t, char my_buff[],
 		return (write(1, "(null)", 6));
 	while (s[x] != '\0')
 	{
-		if (is_printable(s[x]))
+		if (print_check(s[x]))
 			my_buff[x + offset] = s[x];
 		else
-			offset += append_hexa_code(s[x], my_buff, x + offset);
+			offset += handle_hex_code(s[x], my_buff, x + offset);
 		x++;
 	}
 	my_buff[x + offset] = '\0';
