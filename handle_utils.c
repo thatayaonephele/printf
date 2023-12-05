@@ -35,3 +35,22 @@ int check_if_digit(char chr)
 		return (1);
 	return (0);
 }
+/**
+ *handle_hex_code - A function that adds ascci into the buffer hexadecimal code
+ *@my_buff:The parameter that handles the array of chars
+ *@pos: The posional index src for appening ascii code
+ *@ascii_code: The ascci code parameter to be appended
+ *Return: Always Success(3)
+ */
+int handle_hex_code(char ascii_code, char my_buff[], int pos)
+{
+	char my_lambda[] = "0123456789ABCDEF";
+
+	if (ascii_code * (-1) > 0)
+		ascii_code  =  ascii_code * (-1);
+	my_buff[pos++] = '\\';
+	my_buff[pos++] = 'x';
+	my_buff[pos++] = my_lambda[ascii_code / 16];
+	my_buff[pos] = my_lambda[ascii_code % 16];
+	return (3);
+}
