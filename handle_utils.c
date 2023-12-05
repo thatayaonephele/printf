@@ -54,3 +54,18 @@ int handle_hex_code(char ascii_code, char my_buff[], int pos)
 	my_buff[pos] = my_lambda[ascii_code % 16];
 	return (3);
 }
+
+/**
+ *num_size_unsgnd - A function that casts a digit to a specified unsinged size
+ *@my_num: The parameter to be casted to specified size
+ *@my_size: The size type specification parameter to be casted
+ *Return: The casted value based on the specified sizing
+ */
+long num_size_unsgnd(unsigned long my_num, int my_size)
+{
+	if (my_size == S_SHORT)
+		return ((unsigned short)my_num);
+	else if (my_size == S_LONG)
+		return (my_num);
+	return ((unsigned int)my_num);
+}
