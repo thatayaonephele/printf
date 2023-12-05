@@ -43,3 +43,46 @@ int _printf(const char *format, ...)
 	va_end(my_l);
 	return (char_out);
 }
+/**
+ *display_ptr - A function that prints a pointer variable type value
+ *@my_t: The parameter handling the list of args
+ *@my_buff: The parameter that handles the array of chars
+ *@my_f: The parameter handling the active flags
+ *@my_w:The parameter handling the width
+ *@my_p:The specification parameter handling the precision
+ *@my_s: The size type specification parameter to be casted
+ *Return: The number of ptr variable char types
+ */
+int display_ptr(va_list my_t, char my_buff[],
+		int my_f, int my_w, int my_p, int my_s)
+{
+	char added_chr = 0, del = ' ';
+	int pos = BUFF_SIZE - 2, my_l = 2, pad_src = 1;
+	unsigned long n;
+	char lambda_func[] = "0123456789abcdef";
+	void *ptr_add = va_arg(my_t, void *);
+
+	UNUSED(my_w);
+	UNUSED(my_s);
+
+	if (ptr_add == NULL)
+		return (write(1, "(nil)", 5));
+	my_buff[BUFF_SIZE - 1] = '\0';
+	UNUSED(my_p);
+	n = (unsigned long)ptr_add;
+	while (n > 0)
+	{
+		my_buff[pos--] = lambda_func[n % 16];
+		n = n / 16;
+		my_l++;
+	}
+	if ((my_f & F_ZERO) && !(my_f & F_MINUS))
+	del = '0';
+	if (my_f & F_PLUS)
+		added_chr = '+', my_l++;
+	else if (my_f & F_SPACE)
+		added_chr = ' ', my_l++;
+	pos++;
+	return (write_pointer(my_buff, pos, my_l, my_w,
+				my_f, del, added_chr, pad_src));
+}

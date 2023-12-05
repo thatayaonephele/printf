@@ -46,13 +46,16 @@ int handle_print(const char *, int *,
 va_list, char my_buff[], int, int, int, int);
 
 
+/***HANDLE_PRINTING***/
+int display_ptr(va_list, char my_buff[], int, int, int, int);
+
+
 /***CHARS & STRINGS***/
 int display_chr(va_list, char my_buff[], int, int, int, int);
 int display_percent(va_list, char my_buff[], int, int, int, int);
 int display_string(va_list, char my_buff[], int, int, int, int);
 void handle_buff(char my_buff[], int *);
 int disp_binary(va_list, char my_buff[], int, int, int, int);
-
 
 
 /***WRITE_CHR_HANDLER***/
@@ -80,6 +83,5 @@ int handle_flags(const char *, int *);
 int handle_size(const char *, int *);
 int handle_width(const char *, int *, va_list);
 int handle_precision(const char *, int *, va_list);
-
 
 #endif
