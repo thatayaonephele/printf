@@ -103,7 +103,8 @@ int write_number(int pos, char my_buff[], int my_f, int my_w, int my_p,
 	}
 	if (added_chr)
 		my_buff[--pad_src] = added_chr;
-	return (write(1, &my_buff[pad_src], x - pad_src) + write(1, &my_buff[pos], my_l - (1 - pad_src)));
+	return (write(1, &my_buff[pad_src], x - pad_src) + write(1,
+				&my_buff[pos], my_l - (1 - pad_src)));
 }
 /**
  *write_num -A function displaying an array of strings,followed by a new line
@@ -123,10 +124,8 @@ int write_num(int smaller_than_zero, int pos, char my_buff[],
 	int my_len = BUFF_SIZE - pos - 1;
 
 	UNUSED(my_s);
-
 	if (!(my_f & F_MINUS) && (my_f & F_ZERO))
 		del = '0';
-
 	if (my_f & F_SPACE)
 		added_chr = ' ';
 	else if (smaller_than_zero)
@@ -134,4 +133,66 @@ int write_num(int smaller_than_zero, int pos, char my_buff[],
 	else if (my_f & F_PLUS)
 		added_chr = '+';
 	return (write_number(pos, my_buff, my_f, my_w, my_p, my_len, del, added_chr));
+}
+
+/**
+ *handle_ptr - A function that prints the memory address of a pointer variable
+ *@my_buff: The buffer parameter that handles the array of chars
+ *@pos: The positional index src for where num commences
+ *@my_l:  The argument list parameter to be evaluated
+ *@my_w: The parameter handling the width
+ *@my_f: The parameter handling the active flags
+ *@del: The padding char parameter
+ *@added_chr: The char parameter for handling the added char
+ *@pad_src: Index at which padding should start
+ *Return: Number of written chars.
+ */
+int handle_ptr(char my_buff[], int pos, int my_l,
+		int my_w, int my_f, char del, char added_chr, int pad_src)
+{
+	int x;
+
+	if (my_w * (-1) < my_l)
+	{
+		x = 3;
+		while (x < my_w - my_l + 3)
+		{
+			my_buff[x] = del;
+			x++;
+		}
+		my_buff[x] = '\0';
+		if (del == ' ' && my_f & F_MINUS)
+		{
+			my_buff[--pos] = 'x';
+			my_buff[--pos] = '0';
+			if (added_chr)
+				my_buff[--pos] = added_chr;
+			return (write(1, &my_buff[pos], my_l) + write(1, &my_buff[3], x - 3));
+		}
+		else if (!(my_f & F_MINUS) && del == '0')
+		{
+			if (added_chr)
+				my_buff[--pad_src] = added_chr;
+
+			my_buff[1] = '0';
+			my_buff[2] = 'x';
+			return (write(1, &my_buff[pad_src], x - pad_src) +
+					write(1, &my_buff[pos],
+						my_l - (1 - pad_src) - 2));
+		}
+		else if (!(my_f & F_MINUS) && del == ' ')
+		{
+			my_buff[--pos] = 'x';
+			my_buff[--pos] = '0';
+			if (added_chr)
+				my_buff[--pos] = added_chr;
+			return (write(1, &my_buff[3], x - 3) +
+					write(1, &my_buff[pos], my_l));
+		}
+	}
+	my_buff[--pos] = 'x';
+	my_buff[--pos] = '0';
+	if (added_chr)
+		my_buff[--pos] = added_chr;
+	return (write(1, &my_buff[pos], BUFF_SIZE - pos - 1));
 }
