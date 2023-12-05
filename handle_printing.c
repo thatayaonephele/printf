@@ -83,7 +83,7 @@ int display_ptr(va_list my_t, char my_buff[],
 	else if (my_f & F_SPACE)
 		added_chr = ' ', my_l++;
 	pos++;
-	return (write_pointer(my_buff, pos, my_l, my_w,
+	return (handle_ptr(my_buff, pos, my_l, my_w,
 				my_f, del, added_chr, pad_src));
 }
 /**
@@ -158,4 +158,55 @@ int reverse_print(va_list my_t, char my_buff[],
 		ind++;
 	}
 	return (ind);
+}
+
+/**
+ * rot13str - A function that prints a string in rot13 type format
+ * @my_t:The parameter handling the list of args
+ * @my_buff: The parameter that handles the array of chars
+ * @my_f: The parameter handling the active flags
+ * @my_w:The parameter handling the width
+ * @my_p: The specification parameter handling the precision
+ * @my_s:The size type specification parameter to be casted
+ * Return: The array of string chars in rot13 format
+ */
+int rot13str(va_list my_t, char my_buff[], int my_f, int my_w,
+		int my_p, int my_s)
+{
+	char *s;
+	char x;
+	int ind = 0;
+	unsigned int z, y;
+
+	char in[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char out[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+
+	s = va_arg(my_t, char *);
+	UNUSED(my_buff);
+	UNUSED(my_f);
+	UNUSED(my_w);
+	UNUSED(my_p);
+	UNUSED(my_s);
+	if (s == NULL)
+		s = "(AHYY)";
+	for (z = 0; s[z]; z++)
+	{
+		for (y = 0; in[y]; y++)
+		{
+			if (in[y] == s[z])
+		{
+			x = out[y];
+			write(1, &x, 1);
+			ind++;
+			break;
+		}
+	}
+	if (!in[y])
+	{
+		x = s[z];
+		write(1, &x, 1);
+		ind++;
+	}
+}
+return (ind);
 }
