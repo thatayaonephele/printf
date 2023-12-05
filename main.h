@@ -3,7 +3,8 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <unistd.h>
-
+#include <stddef.h>
+#include <stdbool.h>
 
 /***OTHER***/
 #define UNUSED(x) (void)(x)
@@ -62,4 +63,15 @@ int write_num(int, int, char my_buff[], int, int, int, int);
 /***INT_BINARY***/
 int display_int(va_list, char my_buff[], int, int, int, int);
 
+/***HANDLE_UTILS***/
+long cast_num_size(long, int);
+int print_check(char);
+int check_if_digit(char);
+long num_size_unsgnd(unsigned long n, int my_s);
+
+/***FUNCTIONS***/
+int handle_flags(const char *, int *);
+int handle_size(const char *, int *);
+int handle_width(const char *, int *, va_list);
+int handle_precision(const char *, int *, va_list);
 #endif
