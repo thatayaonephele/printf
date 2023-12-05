@@ -48,7 +48,8 @@ va_list, char my_buff[], int, int, int, int);
 
 /***HANDLE_PRINTING***/
 int display_ptr(va_list, char my_buff[], int, int, int, int);
-
+int display_non_print(va_list, char my_buff[], int, int, int, int);
+int reverse_print(va_list, char my_buff[], int, int, int, int);
 
 /***CHARS & STRINGS***/
 int display_chr(va_list, char my_buff[], int, int, int, int);
