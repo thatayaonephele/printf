@@ -52,3 +52,20 @@ int hexa_display(va_list my_t, char lambda_func[], char my_buff[],
 	x++;
 	return (handle_unsgnd(0, x, my_buff, my_f, my_w, my_p, my_s));
 }
+/**
+ *uppcase_hex - A function that displays unsigned upper hexadecimal  numbers
+ *@my_t:The parameter handling the list of args
+ *@my_buff: The parameter that handles the array of chars
+ *@my_f: The parameter handling the active flags
+ *@my_w: The parameter handling the width
+ *@my_p: The specification parameter handling the precision
+ *@my_s:The size type specification parameter to be casted
+ *Return: The unsigned upper hexadecimal  char numbers
+ */
+int uppcase_hex(va_list my_t, char my_buff[],
+		int my_f, int my_w, int my_p, int my_s)
+{
+	return (hexa_display(my_t, "0123456789ABCDEF", my_buff,
+	my_f, 'X', my_w, my_p, my_s));
+}
+
