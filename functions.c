@@ -53,6 +53,15 @@ int handle_print(const char *fmt, int *pos, va_list my_l, char my_buff,
 		{'%', display_percent},
 		{'i', display_int},
 		{'d', display_int},
+		{'b', disp_binary},
+                {'u', display_unsgnd},
+		{'o', octal_disp},
+		{'x', disp_hexadecimal},
+                {'X', uppcase_hex},
+		{'p', display_ptr},
+		{'S', display_non_print},
+                {'r', reverse_print},
+		{'R', rot13str},
 		{'\0', NULL}
 	};
 
