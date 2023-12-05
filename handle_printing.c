@@ -86,3 +86,76 @@ int display_ptr(va_list my_t, char my_buff[],
 	return (write_pointer(my_buff, pos, my_l, my_w,
 				my_f, del, added_chr, pad_src));
 }
+/**
+ *display_non_print -Function that prints non printable chr in ascii code
+ *@my_t: The parameter handling the list of args
+ *@my_buff:The parameter that handles the array of chars
+ *@my_f:  The parameter handling the active flags
+ *@my_w:The parameter handling the width
+ *@my_p: The specification parameter handling the precision
+ *@my_s:The size type specification parameter to be casted
+ *Return: The non printable chrs in asci code format
+ */
+int display_non_print(va_list my_t, char my_buff[],
+		int my_f, int my_w, int my_p, int my_s)
+{
+	char *s = va_arg(my_t, char *);
+	int x = 0, offset = 0;
+
+	UNUSED(my_f);
+	UNUSED(my_w);
+	UNUSED(my_p);
+	UNUSED(my_s);
+	if (s == NULL)
+		return (write(1, "(null)", 6));
+	while (s[x] != '\0')
+	{
+		if (is_printable(s[x]))
+			my_buff[x + offset] = s[x];
+		else
+			offset += append_hexa_code(s[x], my_buff, x + offset);
+		x++;
+	}
+	my_buff[x + offset] = '\0';
+	return (write(1, my_buff, x + offset));
+}
+/**
+ * reverse_print -A function that prints a string in reverse
+ * @my_t: The parameter handling the list of args
+ * @my_buff: The parameter that handles the array of chars
+ * @my_f:  The parameter handling the active flags
+ * @my_w: The parameter handling the width
+ * @my_p: The specification parameter handling the precision
+ * @my_s: The size type specification parameter to be casted
+ * Return: The number of chars to be printed
+ */
+
+int reverse_print(va_list my_t, char my_buff[],
+		int my_f, int my_w, int my_p, int my_s)
+{
+	int x, ind = 0;
+	char *s;
+
+	UNUSED(my_buff);
+	UNUSED(my_f);
+	UNUSED(my_w);
+	UNUSED(my_s);
+
+	s = va_arg(my_t, char *);
+
+	if (s == NULL)
+	{
+		UNUSED(my_p);
+		s = ")Null(";
+	}
+	for (x = 0; s[x]; x++)
+		;
+	for (x = x - 1; x >= 0; x--)
+	{
+		char z = s[x];
+
+		write(1, &z, 1);
+		ind++;
+	}
+	return (ind);
+}
