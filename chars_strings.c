@@ -52,7 +52,7 @@ int display_string(va_list my_t, char my_buff[], int my_f,
 		int my_w, int my_p, int my_s)
 {
 	char *s = va_arg(my_t, char *);
-	int my_l = 0, x;
+	int my_l = 0, x, z = 6, y = 1;
 
 	UNUSED(my_buff);
 	UNUSED(my_f);
@@ -63,7 +63,7 @@ int display_string(va_list my_t, char my_buff[], int my_f,
 	if (s == NULL)
 	{
 		s = "(null)";
-		if (my_p >= 6)
+		if (my_p >= z)
 			s = "      ";
 	}
 	while (s[my_l] != '\0')
@@ -74,11 +74,11 @@ int display_string(va_list my_t, char my_buff[], int my_f,
 	{
 		if (my_f & F_MINUS)
 		{
-			write(1, &s[0], my_l);
+			write(y, &s[0], my_l);
 			x = my_w - my_l;
 			while (x > 0)
 			{
-				write(1, " ", 1);
+				write(y, " ", y);
 				x--;
 			}
 			return (my_w);
@@ -88,14 +88,14 @@ int display_string(va_list my_t, char my_buff[], int my_f,
 			x = my_w - my_l;
 			while (x > 0)
 			{
-				write(1, " ", 1);
+				write(y, " ", y);
 				x--;
 			}
-			write(1, &s[0], my_l);
+			write(y, &s[0], my_l);
 			return (my_w);
 		}
 	}
-	return (write(1, s, my_l));
+	return (write(y, s, my_l));
 }
 /**
  * handle_buff -A fucntion that displays the buffer content if available
@@ -105,8 +105,10 @@ int display_string(va_list my_t, char my_buff[], int my_f,
  */
 void handle_buff(char my_buff[], int *buff_pos)
 {
-	if ((*buff_pos * (-1) < 0))
-		write(1, &my_buff[0], *buff_pos);
+	int y = 1;
+
+	if ((*buff_pos * (-y) < 0))
+		write(y, &my_buff[0], *buff_pos);
 	*buff_pos = 0;
 }
 /**
@@ -123,7 +125,7 @@ int disp_binary(va_list my_t, char my_buff[],
 		int my_f, int my_w, int my_p, int my_s)
 {
 	unsigned int lin, mui, x, total;
-	int pos;
+	int pos, y = 1;
 	unsigned int a[32];
 
 	UNUSED(my_buff);
@@ -132,7 +134,7 @@ int disp_binary(va_list my_t, char my_buff[],
 	UNUSED(my_p);
 	UNUSED(my_s);
 	lin = va_arg(my_t, unsigned int);
-	mui = 2147483648; /* (2 ^ 31) */
+	mui = 2147483648;
 	a[0] = lin / mui;
 	x = 1;
 
@@ -152,7 +154,7 @@ int disp_binary(va_list my_t, char my_buff[],
 		{
 			char k = '0' + a[x];
 
-			write(1, &k, 1);
+			write(y, &k, y);
 			pos++;
 		}
 		x++;
