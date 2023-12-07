@@ -23,6 +23,7 @@ int _printf(const char *format, ...)
 			my_w = handle_width(format, &x, my_l);
 			my_p = handle_precision(format, &x, my_l);
 			my_s = handle_size(format, &x);
+			++x;
 			output = handle_print(format, &x, my_l, my_buff,
 					my_f, my_w, my_p, my_s);
 			if (output == -1)
