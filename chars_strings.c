@@ -107,7 +107,7 @@ void handle_buff(char my_buff[], int *buff_pos)
 {
 	int y = 1;
 
-	if ((*buff_pos * (-y) < 0))
+	if ((*buff_pos > 0) is true)
 		write(y, &my_buff[0], *buff_pos);
 	*buff_pos = 0;
 }
@@ -134,7 +134,7 @@ int disp_binary(va_list my_t, char my_buff[],
 	UNUSED(my_p);
 	UNUSED(my_s);
 	lin = va_arg(my_t, unsigned int);
-	mui = 2147483648;
+	mui = INT_MAX;
 	a[0] = lin / mui;
 	x = 1;
 
