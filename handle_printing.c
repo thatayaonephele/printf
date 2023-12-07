@@ -63,6 +63,7 @@ int display_ptr(va_list my_t, char my_buff[],
 
 	UNUSED(my_w);
 	UNUSED(my_s);
+
 	if (ptr_add == NULL)
 		return (write(1, "(nil)", 5));
 	my_buff[BUFF_SIZE - 1] = '\0';
@@ -98,14 +99,14 @@ int display_non_print(va_list my_t, char my_buff[],
 		int my_f, int my_w, int my_p, int my_s)
 {
 	char *s = va_arg(my_t, char *);
-	int x = 0, offset = 0, z = 1;
+	int x = 0, offset = 0;
 
 	UNUSED(my_f);
 	UNUSED(my_w);
 	UNUSED(my_p);
 	UNUSED(my_s);
 	if (s == NULL)
-		return (write(z, "(null)", 6));
+		return (write(1, "(null)", 6));
 	while (s[x] != '\0')
 	{
 		if (print_check(s[x]))
@@ -115,7 +116,7 @@ int display_non_print(va_list my_t, char my_buff[],
 		x++;
 	}
 	my_buff[x + offset] = '\0';
-	return (write(z, my_buff, x + offset));
+	return (write(1, my_buff, x + offset));
 }
 /**
  * reverse_print -A function that prints a string in reverse
@@ -138,7 +139,9 @@ int reverse_print(va_list my_t, char my_buff[],
 	UNUSED(my_f);
 	UNUSED(my_w);
 	UNUSED(my_s);
+
 	s = va_arg(my_t, char *);
+
 	if (s == NULL)
 	{
 		UNUSED(my_p);

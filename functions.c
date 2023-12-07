@@ -159,7 +159,7 @@ int handle_precision(const char *format, int *x, va_list my_l)
 		}
 		else if (check_if_digit(format[z]))
 		{
-			my_p = my_p * 10;
+			my_p *= 10;
 			my_p = my_p + format[z] - '0';
 			break;
 		}
